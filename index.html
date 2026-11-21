@@ -49,7 +49,7 @@
   <p>Promo QR Payway 3 cuotas — Nov/Dic 2026</p>
 </header>
 <main>
-  <div id="aviso-desactualizado" data-actualizado="2026-11-21T11:30:22.585545">
+  <div id="aviso-desactualizado" data-actualizado="2026-11-21T12:00:22.918759">
     ⚠ <strong>Este dato podría estar desactualizado</strong> — la tarea automática no actualizó la página hoy como debería.
     Avisale a Marcia antes de confiar en este número para presupuestar una venta.
   </div>
@@ -59,7 +59,7 @@
     <div class="disponible-monto">$20.000.000</div>
     <div class="barra-wrap"><div class="barra"></div></div>
     <div class="barra-txt">0.0% del presupuesto usado</div>
-    <div class="actualizado">Última actualización: 21/11/2026 11:30 hs (Arg.)</div>
+    <div class="actualizado">Última actualización: 21/11/2026 12:00 hs (Arg.)</div>
   </div>
 
   <div class="grid">
@@ -90,7 +90,7 @@
 <script>
   // Aviso de "dato desactualizado" del lado del navegador: si la tarea viene fallando en silencio,
   // esta página vieja seguiría mostrando un número como válido. Corridas: lunes, viernes y sábado
-  // cada 30 min desde las 9:00; martes y domingo (día posterior) una vez a las 12:00.
+  // cada 30 min desde las 9:00; martes (día posterior al lunes) una vez a las 12:00.
   (function () {
     var el = document.getElementById('aviso-desactualizado');
     var actualizado = new Date(el.getAttribute('data-actualizado'));
@@ -98,7 +98,7 @@
     var dia = ahora.getDay(); // 0=dom, 1=lun, 2=mar, 5=vie, 6=sab
     var esHoy = actualizado.toDateString() === ahora.toDateString();
     var promo = (dia === 1 || dia === 5 || dia === 6) && ahora.getHours() >= 11;
-    var posterior = (dia === 2 || dia === 0) && ahora.getHours() >= 13;
+    var posterior = (dia === 2) && ahora.getHours() >= 13;
     if ((promo || posterior) && !esHoy) { el.style.display = 'block'; }
   })();
 </script>
